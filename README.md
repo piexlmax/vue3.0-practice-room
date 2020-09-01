@@ -6,6 +6,7 @@ vue3.0学习仓，记录，爬坑，实践，分享
 1. 首先需要按照原始搭建模式下载vue脚手架
 
 > npm install -g @vue/cli
+
 > vue create vue3.0-practice-room
 
 2. 选择安装3.0版本vue（vue-cli，4.5版本已有此选项，往前版本未测试）
@@ -121,23 +122,33 @@ export default router
 1. 入口方法setup
 
 setup 可以算是一个生命周期，它也替代了之前的 created beforeCreate 等 如果非要研究它的时机，官方给出的是，它在beforeCreate之前调用
+
 并且它提代之前的包裹模式，我们在这里面去声明我们之前在data中写的那些参数，每个setup需要return一个object供其他地方使用。然后还可以使用computed等之前用的方法
 
 我小列一下 下面给出示例
 
 ref 需要return的简单响应式数据
+
 reactive 需要return的深层响应式数据
+
 readonly 需要return的深层只读相应数据
+
 watchEffect 类似于react hooks 这个方法内部的任何依赖发生变化，它都会执行一次
+
 watch vue2的watch
+
 onMounted  挂载完成后的生命周期
+
 onUpdated  组件更新的生命周期
+
 onUnmounted 组件被卸载的生命周期
 
 这里简单说一下 ref和reactive
 
 新手可以理解为 ref为简单数据类型声明 reactive用来做复杂数据类型声明 
+
 从监听层即说的话  ref这里声明的数据 监听层级为浅层  reactive 监听层级为深层
+
 再从代码的风格来说的话 ref为扁平化的 reactive为类似于object这样的
 
 我们上个代码 看看效果
