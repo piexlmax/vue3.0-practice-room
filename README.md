@@ -182,6 +182,25 @@ export default {
 
     console.log(person)  // 建议打印看看内部内容
     // return 的属性会暴露给模板，模板中可以直接使用,这里没有 return 的， 无法在模板中使用  (官网说的)
+
+    onMounted(()=>{
+      console.log(123)
+    })
+    onUpdated(()=>{
+      console.log(456)
+    })
+    onUnmounted(()=>{
+      console.log(789)
+    })
+     watchEffect(()=>{
+      console.log(count.value)   // 对内部所设计到的变化的内容进行监听 当这个方法内部的内容设计的变化的时候 会触发当前函数 这里 如果count的value变化了 就会执行打印
+    })
+    watch(() => count.value, val => {
+      console.log(`当前的count值${val}`)
+    })   // watch 单条监听
+    watch(() => [count.value,person.age], (val, age) => {
+      console.log(`当前的count值${val},当前的age值${age}`)
+    })   // watch 多条监听
     return {
       count,
       person,
@@ -199,5 +218,12 @@ export default {
 
 ```
 
+## 四、this去哪了？
+vue3里面不会使用 this去寻找实例了，这里它提供了getCurrentInstance方法来获取实例，上代码
 
+```javascript
+    const { ctx } = getCurrentInstance()
+    console.log(getCurrentInstance())   //分析一下内部的东西有什么
+    console.log(ctx.$router)   // 找一下方法 找一下$route  (currentRoute)   $router 和 $route 就和以前一样用法了
+```
 先写这么多 休息去了。。。。。
